@@ -52,9 +52,15 @@
 
 > **Note:** The live GPU stats shown in this demo are from running Ollama with the `gpt-oss:20b` model locally.
 
-<video src="Outputs/Demo.mp4" controls style="max-width: 100%; height: auto;">
-  Your browser does not support the video tag. <a href="Outputs/Demo.mp4">Download the video</a>
+<video 
+  src="https://github.com/user-attachments/assets/6b1b9ad9-a2d0-4d8e-894e-d37034e09499"
+  controls
+  style="max-width: 100%; height: auto;">
 </video>
+
+
+
+
 
 *Resource Monitor in action on Windows - showing real-time CPU, Memory, GPU monitoring and process details*
 
