@@ -101,7 +101,7 @@
 
 ```powershell
 # Or from PowerShell/CMD:
-git clone https://github.com/yourusername/resmon-tui
+git clone https://github.com/saiteja007-mv/resmon-tui.git
 cd resmon-tui
 install.bat
 ```
@@ -109,7 +109,7 @@ install.bat
 #### Linux / macOS
 
 ```bash
-git clone https://github.com/yourusername/resmon-tui
+git clone https://github.com/saiteja007-mv/resmon-tui.git
 cd resmon-tui
 chmod +x install.sh
 ./install.sh
@@ -190,7 +190,7 @@ If you prefer to install manually or already have Rust:
 ### Install (Basic - without GPU monitoring)
 
 ```bash
-git clone https://github.com/yourusername/resmon-tui
+git clone https://github.com/saiteja007-mv/resmon-tui.git
 cd resmon-tui
 cargo install --path .
 ```
@@ -205,7 +205,7 @@ cargo install --path . --features gpu-nvidia
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/resmon-tui
+git clone https://github.com/saiteja007-mv/resmon-tui.git
 cd resmon-tui
 
 # Build without GPU
