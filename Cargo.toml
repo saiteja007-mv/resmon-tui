@@ -1,0 +1,33 @@
+[package]
+name = "resmon-tui"
+version = "0.1.0"
+edition = "2021"
+authors = ["Resource Monitor Contributors"]
+description = "A beautiful cross-platform terminal UI for monitoring system resources"
+license = "MIT"
+
+[dependencies]
+# TUI Framework
+ratatui = "0.27"
+crossterm = "0.27"
+
+# System Information
+sysinfo = "0.31"
+
+# Async Runtime
+tokio = { version = "1", features = ["full"] }
+
+# Utilities
+anyhow = "1.0"
+chrono = "0.4"
+
+# GPU Monitoring (optional, NVIDIA only)
+nvml-wrapper = { version = "0.10", optional = true }
+
+[features]
+default = []
+gpu-nvidia = ["nvml-wrapper"]
+
+[[bin]]
+name = "resmon"
+path = "src/main.rs"
