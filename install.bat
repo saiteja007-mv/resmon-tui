@@ -100,10 +100,10 @@ echo [4/4] Verifying installation...
 echo.
 
 :: Check if resmon is in PATH
-where resmon >nul 2>&1
+where rtui >nul 2>&1
 if %errorLevel% neq 0 (
     echo.
-    echo WARNING: 'resmon' not found in PATH!
+    echo WARNING: 'rtui' not found in PATH!
     echo.
     echo Please add the following to your PATH:
     echo %USERPROFILE%\.cargo\bin
@@ -119,7 +119,7 @@ if %errorLevel% neq 0 (
     echo.
 ) else (
     echo Installation successful!
-    resmon --version 2>nul || echo resmon installed successfully!
+    rtui --version 2>nul || echo rtui installed successfully!
 )
 
 echo.
@@ -128,7 +128,7 @@ echo          Installation Complete!
 echo ================================================
 echo.
 echo To run ResMan TUI, simply type:
-echo     resmon
+echo     rtui
 echo.
 echo Controls:
 echo   - Up/Down or j/k   : Navigate processes
@@ -136,7 +136,7 @@ echo   - Enter            : View process details
 echo   - Esc              : Close details
 echo   - q                : Quit
 echo.
-echo If 'resmon' command is not found, restart your terminal
+echo If 'rtui' command is not found, restart your terminal
 echo or add %USERPROFILE%\.cargo\bin to your PATH.
 echo.
 pause

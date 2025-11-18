@@ -29,5 +29,5 @@ default = []
 gpu-nvidia = ["nvml-wrapper"]
 
 [[bin]]
-name = "resmon"
+name = "rtui"
 path = "src/main.rs"

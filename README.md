@@ -97,7 +97,7 @@
 1. Download or clone the repository
 2. **Double-click `install.bat`**
 3. Follow the prompts
-4. Done! Run `resmon` from any terminal
+4. Done! Run `rtui` from any terminal
 
 ```powershell
 # Or from PowerShell/CMD:
@@ -120,7 +120,7 @@ chmod +x install.sh
 - ✅ Checks if Rust is installed (installs if needed)
 - ✅ Asks if you want GPU support (NVIDIA only)
 - ✅ Builds the optimized release version
-- ✅ Installs globally so you can run `resmon` from anywhere
+- ✅ Installs globally so you can run `rtui` from anywhere
 - ✅ Verifies the installation
 
 ---
@@ -130,7 +130,7 @@ chmod +x install.sh
 After installation, simply run:
 
 ```bash
-resmon
+rtui
 ```
 
 ### Keyboard Controls
@@ -215,16 +215,16 @@ cargo build --release
 cargo build --release --features gpu-nvidia
 
 # Run
-./target/release/resmon
+./target/release/rtui
 ```
 
-The binary will be installed to `~/.cargo/bin/resmon` (or `%USERPROFILE%\.cargo\bin\resmon.exe` on Windows).
+The binary will be installed to `~/.cargo/bin/rtui` (or `%USERPROFILE%\.cargo\bin\rtui.exe` on Windows).
 
 ---
 
 ## 🔧 Troubleshooting
 
-### "Command not found: resmon"
+### "Command not found: rtui"
 
 **Windows:**
 
@@ -336,12 +336,13 @@ To remove ResMan TUI:
 
 ```bash
 cargo uninstall resmon-tui
+# Note: The command is now 'rtui' not 'resmon'
 ```
 
 Or manually delete:
 
-- Windows: `%USERPROFILE%\.cargo\bin\resmon.exe`
-- Linux/macOS: `~/.cargo/bin/resmon`
+- Windows: `%USERPROFILE%\.cargo\bin\rtui.exe`
+- Linux/macOS: `~/.cargo/bin/rtui`
 
 ---
 
@@ -394,13 +395,14 @@ If you encounter any issues or have questions:
 **Running:**
 
 ```bash
-resmon
+rtui
 ```
 
 **Uninstall:**
 
 ```bash
 cargo uninstall resmon-tui
+# Note: The command is now 'rtui' not 'resmon'
 ```
 
 ---
