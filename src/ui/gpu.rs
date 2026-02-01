@@ -1,31 +1,33 @@
 use crate::app::App;
 use ratatui::{
-    layout::{Constraint, Direction, Layout, Rect},
+    layout::Rect,
     style::{Color, Modifier, Style},
-    symbols,
     text::{Line, Span},
-    widgets::{Axis, Block, Borders, Chart, Dataset, Gauge, GraphType},
+    widgets::{Block, Borders},
     Frame,
 };
 
 #[cfg(feature = "gpu-nvidia")]
-use nvml_wrapper::Nvml;
+use ratatui::{
+    layout::{Constraint, Direction, Layout},
+    symbols,
+    widgets::{Axis, Chart, Dataset, Gauge, GraphType},
+};
 
 /// Render GPU information
+#[cfg(feature = "gpu-nvidia")]
 pub fn render(f: &mut Frame, app: &App, area: Rect) {
-    #[cfg(feature = "gpu-nvidia")]
-    {
-        if let Some(ref gpu_info) = app.gpu_info {
-            render_nvidia_gpu(f, app, area, gpu_info);
-        } else {
-            render_no_gpu(f, area);
-        }
-    }
-
-    #[cfg(not(feature = "gpu-nvidia"))]
-    {
+    if let Some(ref gpu_info) = app.gpu_info {
+        render_nvidia_gpu(f, app, area, gpu_info);
+    } else {
         render_no_gpu(f, area);
     }
+}
+
+/// Render GPU information (no GPU feature)
+#[cfg(not(feature = "gpu-nvidia"))]
+pub fn render(f: &mut Frame, _app: &App, area: Rect) {
+    render_no_gpu(f, area);
 }
 
 /// Render when no GPU monitoring available
@@ -180,9 +182,9 @@ fn render_nvidia_gpu(f: &mut Frame, app: &App, area: Rect, gpu_info: &crate::app
 
 #[cfg(feature = "gpu-nvidia")]
 fn get_gpu_usage_color(usage: f32) -> Color {
-    if usage < 50.0 {
+    if usage < 60.0 {
         Color::Green
-    } else if usage < 75.0 {
+    } else if usage < 85.0 {
         Color::Yellow
     } else {
         Color::Red

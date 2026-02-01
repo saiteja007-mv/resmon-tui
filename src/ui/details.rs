@@ -21,9 +21,9 @@ pub fn render(f: &mut Frame, app: &App, area: Rect) {
 
         // CPU usage gauge
         let cpu_usage = process.cpu_usage();
-        let cpu_color = if cpu_usage > 75.0 {
+        let cpu_color = if cpu_usage >= 85.0 {
             Color::Red
-        } else if cpu_usage > 50.0 {
+        } else if cpu_usage >= 60.0 {
             Color::Yellow
         } else {
             Color::Green

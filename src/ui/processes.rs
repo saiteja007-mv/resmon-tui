@@ -9,7 +9,7 @@ use ratatui::{
 
 /// Render process list
 pub fn render(f: &mut Frame, app: &App, area: Rect) {
-    let processes = app.get_sorted_processes();
+    let processes = app.get_display_processes();
 
     // Calculate how many processes can fit in the view
     let visible_count = (area.height.saturating_sub(2)) as usize;
@@ -48,9 +48,9 @@ pub fn render(f: &mut Frame, app: &App, area: Rect) {
                 Style::default().fg(Color::White)
             };
 
-            let cpu_color = if cpu > 50.0 {
+            let cpu_color = if cpu >= 85.0 {
                 Color::Red
-            } else if cpu > 25.0 {
+            } else if cpu >= 60.0 {
                 Color::Yellow
             } else {
                 Color::Green
@@ -77,24 +77,45 @@ pub fn render(f: &mut Frame, app: &App, area: Rect) {
         })
         .collect();
 
-    // Header
+    // Header with sort indicators
+    let pid_header = match app.sort_order {
+        crate::app::SortOrder::Pid => "PID ▼   ",
+        _ => "PID     ",
+    };
+    let cpu_header = match app.sort_order {
+        crate::app::SortOrder::Cpu => "CPU ▼ ",
+        _ => "CPU   ",
+    };
+    let mem_header = match app.sort_order {
+        crate::app::SortOrder::Memory => "Memory ▼",
+        _ => "Memory  ",
+    };
+
     let header = vec![Line::from(vec![
-        Span::styled("PID     ", Style::default().fg(Color::Cyan).add_modifier(Modifier::BOLD)),
+        Span::styled(pid_header, Style::default().fg(Color::Cyan).add_modifier(Modifier::BOLD)),
         Span::raw(" "),
         Span::styled(
             format!("{:<30}", "Process Name"),
             Style::default().fg(Color::Cyan).add_modifier(Modifier::BOLD),
         ),
         Span::raw(" "),
-        Span::styled("CPU   ", Style::default().fg(Color::Cyan).add_modifier(Modifier::BOLD)),
+        Span::styled(cpu_header, Style::default().fg(Color::Cyan).add_modifier(Modifier::BOLD)),
         Span::raw(" "),
-        Span::styled("Memory", Style::default().fg(Color::Cyan).add_modifier(Modifier::BOLD)),
+        Span::styled(mem_header, Style::default().fg(Color::Cyan).add_modifier(Modifier::BOLD)),
     ])];
 
-    let title = if app.show_details {
-        " Processes (↑/↓: Navigate, Enter: Details, Esc: Close Details) "
+    let title = if app.search_mode {
+        format!(" Search: {} ", app.search_query)
+    } else if app.show_details {
+        " Processes (↑/↓: Navigate, Enter: Details, Esc: Close Details) ".to_string()
     } else {
-        " Processes (↑/↓: Navigate, Enter: View Details, q: Quit) "
+        " Processes (↑/↓: Navigate, Enter: View Details, q: Quit) ".to_string()
+    };
+
+    let border_color = if app.search_mode {
+        Color::Yellow
+    } else {
+        Color::Cyan
     };
 
     let list = List::new(items)
@@ -102,7 +123,7 @@ pub fn render(f: &mut Frame, app: &App, area: Rect) {
             Block::default()
                 .title(title)
                 .borders(Borders::ALL)
-                .border_style(Style::default().fg(Color::Cyan)),
+                .border_style(Style::default().fg(border_color)),
         )
         .style(Style::default().fg(Color::White));
 

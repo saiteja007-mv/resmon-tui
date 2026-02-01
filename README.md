@@ -1,48 +1,110 @@
-# ResMan TUI - Resource Monitor Terminal UI
+# ResMon TUI - Resource Monitor Terminal UI
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
+<p align="center">
+  <img src="Resmon-tui-logo.png" alt="ResMan TUI Logo" width="400"/>
+</p>
 
-![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)
+<p align="center">
+  <img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"/>
+  <img src="https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey" alt="Platform"/>
+  <img src="https://img.shields.io/badge/rust-1.70%2B-orange.svg" alt="Rust"/>
+</p>
+
+<p align="center">
+  <strong>A powerful, feature-rich terminal UI for real-time system monitoring</strong>
+</p>
 
 ---
 
 ## ✨ Features
 
-- **📊 CPU Monitoring**
+### 📊 CPU Monitoring
 
-  - Per-core CPU usage with real-time sparkline graphs
-  - Overall CPU usage gauge
-  - Historical data visualization with line charts
-- **💾 Memory Monitoring**
+- **Stylized ASCII Art Logo** - Beautiful RESMON branding with gradient colors
+- **Per-core CPU Usage** - Individual gauges with sparkline graphs for each core
+- **CPU Frequency Display** - Real-time frequency monitoring per core (GHz)
+- **Overall CPU Usage** - Gauge showing total system CPU usage
+- **Historical Data** - Line charts showing CPU usage over time
+- **Smart Grid Layout** - 4-column responsive grid for optimal core visualization
 
-  - Real-time memory usage tracking
-  - Historical memory usage graphs
-- **🎮 GPU Monitoring** (Optional - NVIDIA only)
+### 💾 Memory Monitoring
 
-  - GPU usage percentage with gauge
-  - Memory usage (used/total)
-  - Temperature monitoring with color-coded warnings
-  - GPU usage history graph
-- **⚙️ Process Management**
+- Real-time memory usage tracking
+- Historical memory usage graphs
+- Memory percentage with visual indicators
 
-  - Live process list sorted by CPU usage
-  - Process details view with:
-    - CPU and memory usage gauges
-    - Process information (PID, parent, status, executable)
-    - Disk I/O statistics
-    - Virtual memory usage
-- **🎨 Beautiful Interface**
+### 🎮 GPU Monitoring (Optional - NVIDIA only)
 
-  - Color-coded usage indicators (🟢 green < 50%, 🟡 yellow < 75%, 🔴 red ≥ 75%)
-  - Responsive layout that adapts to terminal size
-  - Smooth real-time updates (500ms refresh)
-- **⌨️ Keyboard Controls**
+- GPU usage percentage with gauge
+- Memory usage (used/total)
+- Temperature monitoring with color-coded warnings
+- GPU usage history graph
+- Automatic feature detection
 
-  - `↑/k` - Navigate up in process list
-  - `↓/j` - Navigate down in process list
-  - `Enter` - View detailed info for selected process
-  - `Esc` - Close detail view
-  - `q` - Quit application
+### ⚙️ Enhanced Process Management
+
+- **Live Process List** - Real-time updates with color-coded CPU usage
+- **Multiple Sort Options:**
+  - `c` - Sort by CPU usage (default)
+  - `m` - Sort by Memory usage
+  - `p` - Sort by Process ID
+  - `t` - Sort by Runtime
+  - Visual sort indicator (▼) in column headers
+- **Search & Filter** - Press `/` to filter processes by name or PID
+- **Process Actions:**
+  - `k` - Kill selected process (with confirmation)
+  - `s` - Suspend process (Unix/Linux only)
+  - `r` - Resume process (Unix/Linux only)
+  - Confirmation dialogs with color-coded warnings
+  - Success/error toast notifications
+- **Detailed Process View:**
+  - CPU and memory usage gauges
+  - Process information (PID, parent, status, executable)
+  - Disk I/O statistics
+  - Virtual memory usage
+  - Working directory
+
+### 🎨 Beautiful Interface
+
+- **Enhanced Color Thresholds:**
+  - 🟢 Green: 0-60% (optimal)
+  - 🟡 Yellow: 60-85% (warning)
+  - 🔴 Red: 85-100% (critical)
+- **Context-Aware Status Bar** - Dynamic keyboard hints based on current mode
+- **Toast Notifications** - Auto-dismissing feedback messages (3 seconds)
+- **Help System** - Press `?` for comprehensive keyboard shortcut reference
+- **Optimized Layout** - Reorganized for maximum information density
+- **Smooth Updates** - Configurable refresh rate (250ms - 5000ms)
+
+### ⌨️ Comprehensive Keyboard Controls
+
+#### Navigation
+- `↑` / `k` - Navigate up in process list
+- `↓` / `j` - Navigate down in process list
+- `Enter` - View detailed info for selected process
+- `Esc` - Close overlay/detail view/exit mode
+
+#### View Controls
+- `?` - Toggle help overlay
+- `/` - Enter search mode
+- `+` / `=` - Increase refresh rate (faster updates)
+- `-` - Decrease refresh rate (slower updates)
+
+#### Sorting
+- `c` - Sort by CPU usage
+- `m` - Sort by Memory usage
+- `p` - Sort by Process ID
+- `t` - Sort by Runtime
+
+#### Process Actions
+- `k` - Kill selected process
+- `s` - Suspend process (Unix/Linux)
+- `r` - Resume process (Unix/Linux)
+- `y` / `Enter` - Confirm action
+- `n` / `Esc` - Cancel action
+
+#### General
+- `q` / `Q` - Quit application (normal mode only)
 
 ---
 
@@ -52,15 +114,11 @@
 
 > **Note:** The live GPU stats shown in this demo are from running Ollama with the `gpt-oss:20b` model locally.
 
-<video 
+<video
   src="https://github.com/user-attachments/assets/6b1b9ad9-a2d0-4d8e-894e-d37034e09499"
   controls
   style="max-width: 100%; height: auto;">
 </video>
-
-
-
-
 
 *Resource Monitor in action on Windows - showing real-time CPU, Memory, GPU monitoring and process details*
 
@@ -70,7 +128,7 @@
 
 ![Resource Monitor Main View](Outputs/Resource%20Monitor%20output.png)
 
-*Main dashboard showing CPU per-core usage with sparklines, overall CPU history, memory usage, GPU monitoring, and live process list*
+*Main dashboard with RESMON ASCII logo, CPU per-core usage with frequency display, overall CPU history, GPU monitoring, and live process list with search and sort capabilities*
 
 #### Process Details View
 
@@ -82,7 +140,7 @@
 
 ![Linux Output](Outputs/Linux%20Output.png)
 
-*Running on Linux with full cross-platform support*
+*Running on Linux with full cross-platform support and process control features*
 
 ---
 
@@ -133,21 +191,45 @@ After installation, simply run:
 rtui
 ```
 
-### Keyboard Controls
+### Getting Started
 
-| Key             | Action                            |
-| --------------- | --------------------------------- |
-| `↑` or `k` | Move selection up                 |
-| `↓` or `j` | Move selection down               |
-| `Enter`       | View process details (split view) |
-| `Esc`         | Close detail view                 |
-| `q`           | Quit (when not in detail view)    |
+1. **Explore the Interface** - Let it run for a few seconds to see graphs populate
+2. **Navigate Processes** - Use `↑/↓` or `j/k` to select processes
+3. **View Details** - Press `Enter` on any process for detailed stats
+4. **Search** - Press `/` to filter processes by name or PID
+5. **Sort** - Use `c`, `m`, `p`, or `t` to sort by different criteria
+6. **Adjust Speed** - Press `+`/`-` to change refresh rate
+7. **Get Help** - Press `?` anytime to see all keyboard shortcuts
 
-### Tips
+### Keyboard Reference
 
-- Let it run for a few seconds to see the graphs populate with data
-- Press `Enter` on any process to see detailed statistics
-- Use `j`/`k` for vim-style navigation
+| Key          | Action                                    | Context         |
+| ------------ | ----------------------------------------- | --------------- |
+| `?`          | Toggle help screen                        | Always          |
+| `/`          | Enter search mode                         | Normal mode     |
+| `c`          | Sort by CPU usage                         | Normal mode     |
+| `m`          | Sort by Memory usage                      | Normal mode     |
+| `p`          | Sort by Process ID                        | Normal mode     |
+| `t`          | Sort by Runtime                           | Normal mode     |
+| `+` / `=`    | Increase refresh rate (faster)            | Normal mode     |
+| `-`          | Decrease refresh rate (slower)            | Normal mode     |
+| `k`          | Kill selected process                     | Process selected|
+| `s`          | Suspend selected process                  | Unix/Linux only |
+| `r`          | Resume selected process                   | Unix/Linux only |
+| `↑` / `k`    | Navigate up                               | Process list    |
+| `↓` / `j`    | Navigate down                             | Process list    |
+| `Enter`      | View process details / Confirm action     | Context-aware   |
+| `Esc`        | Close overlay / Exit mode / Cancel action | Context-aware   |
+| `q` / `Q`    | Quit application                          | Normal mode     |
+
+### Tips & Tricks
+
+- 💡 **Vim Users:** Use `j`/`k` for navigation just like in vim
+- 🔍 **Quick Search:** Type `/` followed by process name or PID
+- 📊 **Performance Mode:** Use `+` to set 250ms refresh for real-time monitoring
+- 🎯 **Battery Saver:** Use `-` to set 5000ms refresh when idle
+- 🎨 **Color Guide:** Green (healthy), Yellow (elevated), Red (critical)
+- ⚡ **Process Control:** Select a process and press `k` to kill it (requires confirmation)
 
 ---
 
@@ -303,20 +385,36 @@ cargo clippy
 
 ## 🎯 Roadmap
 
+### Implemented ✅
+
 - [X] CPU monitoring (per-core with sparkline graphs)
+- [X] CPU frequency display per core
 - [X] Overall CPU history (line chart)
 - [X] Memory monitoring
-- [X] Process list with sorting
+- [X] Process list with multiple sort options
 - [X] Process detail view
 - [X] GPU monitoring (NVIDIA support via feature flag)
+- [X] Search and filter processes
+- [X] Configurable refresh rate
+- [X] Help system with keyboard shortcuts
+- [X] Process management (kill/suspend/resume)
+- [X] Toast notifications
+- [X] Context-aware status bar
+- [X] Enhanced color thresholds
+- [X] RESMON ASCII logo branding
+
+### Planned 🚧
+
 - [ ] GPU monitoring for AMD/Intel
 - [ ] Network I/O monitoring
 - [ ] Disk I/O monitoring with graphs
+- [ ] Process tree view
 - [ ] Custom color themes
 - [ ] Configuration file support
-- [ ] Process filtering and search
 - [ ] Export data to CSV/JSON
 - [ ] Mouse support
+- [ ] Responsive layouts for different terminal sizes
+- [ ] Process history tracking
 
 ---
 
@@ -328,6 +426,12 @@ ResMan TUI works on:
 - ✅ **Linux** (Ubuntu, Debian, Fedora, Arch, etc.)
 - ✅ **macOS** 10.15+ (Intel and Apple Silicon)
 
+**Platform-Specific Features:**
+
+- **Windows:** Full CPU/Memory/GPU monitoring, process kill
+- **Linux/Unix:** All features + process suspend/resume
+- **macOS:** Full CPU/Memory monitoring (GPU if NVIDIA eGPU)
+
 ---
 
 ## 📦 Uninstall
@@ -336,7 +440,6 @@ To remove ResMan TUI:
 
 ```bash
 cargo uninstall resmon-tui
-# Note: The command is now 'rtui' not 'resmon'
 ```
 
 Or manually delete:
@@ -356,6 +459,14 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+### Development Guidelines
+
+- Follow existing code style
+- Add tests for new features
+- Update documentation
+- Ensure `cargo clippy` passes with no warnings
+- Format code with `cargo fmt`
+
 ---
 
 ## 📝 License
@@ -370,6 +481,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [sysinfo](https://github.com/GuillaumeGomez/sysinfo) - Cross-platform system information
 - [crossterm](https://github.com/crossterm-rs/crossterm) - Cross-platform terminal manipulation
 - [nvml-wrapper](https://github.com/Cldfire/nvml-wrapper) - NVIDIA GPU monitoring
+- ASCII logo inspired by [oh-my-logo](https://github.com/shinshin86/oh-my-logo)
 
 ---
 
@@ -377,9 +489,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 If you encounter any issues or have questions:
 
-- 🐛 [Report a Bug](https://github.com/yourusername/resmon-tui/issues)
-- 💡 [Request a Feature](https://github.com/yourusername/resmon-tui/issues)
-- 💬 [Start a Discussion](https://github.com/yourusername/resmon-tui/discussions)
+- 🐛 [Report a Bug](https://github.com/saiteja007-mv/resmon-tui/issues)
+- 💡 [Request a Feature](https://github.com/saiteja007-mv/resmon-tui/issues)
+- 💬 [Start a Discussion](https://github.com/saiteja007-mv/resmon-tui/discussions)
 
 ---
 
@@ -398,13 +510,30 @@ If you encounter any issues or have questions:
 rtui
 ```
 
+**Quick Help:**
+
+```bash
+# Inside the app, press:
+?  - Show all keyboard shortcuts
+/  - Search processes
+c  - Sort by CPU
++  - Faster updates
+-  - Slower updates
+q  - Quit
+```
+
 **Uninstall:**
 
 ```bash
 cargo uninstall resmon-tui
-# Note: The command is now 'rtui' not 'resmon'
 ```
 
 ---
 
-Made with ❤️ using Rust
+<p align="center">
+  Made with ❤️ using Rust
+</p>
+
+<p align="center">
+  <strong>Star ⭐ this repo if you find it useful!</strong>
+</p>
